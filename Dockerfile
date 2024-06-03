@@ -28,16 +28,16 @@ ENV PATH="/root/.local/bin:${PATH}"
 
 # Install PyTorch and other Python packages
 RUN pip3 install torch torchvision torchaudio
-RUN pip3 install tqdm matplotlib scikit-learn pandas numpy pyroomacoustics
+RUN pip3 install tqdm matplotlib scikit-learn pandas numpy pyroomacoustics aiohttp aiofiles
 
 # Copy the project files
 COPY . /workspace
 
 # Copy the entrypoint script
-COPY entrypoint.sh /workspace/entrypoint.sh
+COPY entrypoint /workspace/entrypoint
 
 # Make the entrypoint script executable
-RUN chmod +x /workspace/entrypoint.sh
+RUN chmod +x /workspace/entrypoint
 
 # Default command
 CMD ["bash"]
