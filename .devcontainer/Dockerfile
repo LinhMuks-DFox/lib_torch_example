@@ -1,0 +1,42 @@
+# Use the official CUDA base image
+FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
+
+# Set the working directory
+WORKDIR /workspace
+
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    wget \
+    curl \
+    vim \
+    python3 \
+    python3-pip \
+    clang \
+    llvm \
+    libomp-dev \
+    clangd
+
+# Install Poetry
+RUN curl -sSL https://install.python-poetry.org | python3 -
+
+# Add Poetry to PATH
+ENV PATH="/root/.local/bin:${PATH}"
+
+# Install PyTorch and other Python packages
+RUN pip3 install torch torchvision torchaudio
+RUN pip3 install tqdm matplotlib scikit-learn pandas numpy pyroomacoustics
+
+# Copy the project files
+COPY . /workspace
+
+# Copy the entrypoint script
+COPY entrypoint.sh /workspace/entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /workspace/entrypoint.sh
+
+# Default command
+CMD ["bash"]

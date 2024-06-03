@@ -1,0 +1,23 @@
+{
+    "name": "libtorch_example",
+    "dockerComposeFile": "../docker-compose.yml",
+    // Remove the "dockerFile" property
+    "service": "libtorch_example",
+    "workspaceFolder": "/workspace"
+    // "customizations": {
+    //     "vscode": {
+    //         "settings": {
+    //             "clangd.path": "/usr/bin/clangd",
+    //             "python.pythonPath": "/usr/bin/python3",
+    //             "clangd.arguments": [
+    //                 "--compile-commands-dir=${workspaceFolder}/build/compile_commands.json"
+    //             ]
+    //         },
+    //         "extensions": [
+    //             "ms-vscode.cpptools",
+    //             "llvm-vs-code-extensions.vscode-clangd",
+    //             "ms-python.python"
+    //         ]
+    //     }
+    // }
+}
